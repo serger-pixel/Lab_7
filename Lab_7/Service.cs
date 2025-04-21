@@ -9,44 +9,56 @@ namespace Lab_7
 {
     public class Service
     {
+        Regex _regexName = new Regex(Regs._nameReg);
+        Regex _regexPrice = new Regex(Regs._priceReg);
+        Regex _regexUsers = new Regex(Regs._cntUsersReg);
         //Список объектов
         public InternerOperatorList _dataBase = new InternerOperatorList();
 
         public void checkName(String name) 
         {
-            
+            if (!_regexName.Match(name).Success)
+            {
+                throw new NameException();
+            }
+        }
+
+        public void checkExistance(String name) 
+        {
+            if (_dataBase.find(name))
+            {
+                throw new ObjectExists();
+            }
+        }
+
+        public void checkPrice(String price) 
+        {
+            if (!_regexPrice.Match(price).Success)
+            {
+                throw new PriceException();
+            }
+        }
+
+        public void checkUsers(String cntUsers) 
+        {
+            if (!_regexUsers.Match(cntUsers).Success)
+            {
+                throw new CntUsersException();
+            }
         }
 
         public void checkData(String inputData) 
         {
             String[] splitData = inputData.Split(new char[] { ' ' });
 
-            Regex regex = new Regex(Regs._nameReg);
-
-            if (!regex.Match(splitData[0]).Success)
-            {
-                throw new NameException();
-            }
-
-            if (_dataBase.find(splitData[0]))
-            {
-                throw new ObjectExists();
-            }
-
-            if (!regex.Match(splitData[1]).Success) 
-            {
-                throw new PriceException();
-            }
-
-            if (!regex.Match(splitData[2]).Success) 
-            {
-                throw new CntUsersException();
-            }
-
+            checkName(splitData[0]);
+            checkExistance(splitData[0]);
+            checkPrice(splitData[1]);
+            checkUsers(splitData[2]);
         }
         
         //Конвертация строки в интернет оператор
-        private InternetOperator convert(String inputData)
+        public InternetOperator convert(String inputData)
         {
             String []splitData = inputData.Split(new char[] { ' ' });
             return new InternetOperator(splitData[0], decimal.Parse(splitData[1]), int.Parse(splitData[2]));
