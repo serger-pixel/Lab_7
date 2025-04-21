@@ -7,6 +7,14 @@ using System.Threading.Tasks;
 
 namespace Lab_7
 {
+    public static class Regs
+    {
+        public const String _nameReg = "^[A-Z][A-Za-z]{0,19}$";
+        public const String _priceReg = "^(100(,0+)?|[1-9]\\d{2,4}(,\\d+)?|100000(,0+)?)$";
+        public const String _cntUsersReg = "^(100|[1-9]?[0-9])$";
+    }
+
+
     public static class ExceptionMessages
     {
         public const String NAMEEXCEP = "Имя опрератора должно" +
@@ -20,8 +28,6 @@ namespace Lab_7
             "значение должно быть натуральным числом";
 
         public const String OBJECTEXISTS = "Объект с таким именем уже существует";
-
-        public const String OBJWASNTCHOSEN = "Объект не выбран";
 
         public const String FILEDNOTCHOSEN = "Поле не выбрано";
 
@@ -40,4 +46,21 @@ namespace Lab_7
     {
         public CntUsersException() : base(ExceptionMessages.CNTUSERSEXCEP) { }
     }
+
+    //Исключение отсутствия выбора
+    public class FieldNotChosenException : Exception
+    {
+        public FieldNotChosenException() : base(ExceptionMessages.FILEDNOTCHOSEN) { }
+    }
+
+    public class ObjectNotChosenException : Exception
+    {
+        public ObjectNotChosenException() : base(ExceptionMessages.FILEDNOTCHOSEN) { }
+    }
+
+    public class ObjectExists : Exception 
+    {
+        public ObjectExists() : base(ExceptionMessages.OBJECTEXISTS) { }
+    }
 }
+

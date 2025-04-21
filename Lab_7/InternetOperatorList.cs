@@ -2,14 +2,6 @@
 
 namespace Lab_7
 {
-    public static class IntOperLstConsts
-    {
-        public const int CNTGENERATE = 10000000;
-
-        public const String RANDOMSELECT = "Случайный";
-
-        public const String SEQUENCESELECT = "Последовательный";
-    }
 
     public class InternerOperatorList : IList<InternetOperator>
     {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Lab_7
@@ -9,8 +10,41 @@ namespace Lab_7
     public class Service
     {
         //Список объектов
-        public InternerOperatorList dataBase = new InternerOperatorList();
+        public InternerOperatorList _dataBase = new InternerOperatorList();
 
+        public void checkName(String name) 
+        {
+            
+        }
+
+        public void checkData(String inputData) 
+        {
+            String[] splitData = inputData.Split(new char[] { ' ' });
+
+            Regex regex = new Regex(Regs._nameReg);
+
+            if (!regex.Match(splitData[0]).Success)
+            {
+                throw new NameException();
+            }
+
+            if (_dataBase.find(splitData[0]))
+            {
+                throw new ObjectExists();
+            }
+
+            if (!regex.Match(splitData[1]).Success) 
+            {
+                throw new PriceException();
+            }
+
+            if (!regex.Match(splitData[2]).Success) 
+            {
+                throw new CntUsersException();
+            }
+
+        }
+        
         //Конвертация строки в интернет оператор
         private InternetOperator convert(String inputData)
         {
@@ -20,24 +54,24 @@ namespace Lab_7
 
         //Добавление пользователя
         public void add(String inputData) {
-            dataBase.Add(convert(inputData));
+            _dataBase.Add(convert(inputData));
         }
 
         //Удаление пользователя
         public void remove(String name) {
-            InternetOperator localOperator = dataBase.getByName(name);
-            dataBase.Remove(localOperator);
+            InternetOperator localOperator = _dataBase.getByName(name);
+            _dataBase.Remove(localOperator);
         }
 
         //Получение пользователя
         public InternetOperator get(String name) {
-            return dataBase.getByName(name);
+            return _dataBase.getByName(name);
         }
 
         //Обновление пользователя
         public void update(String inputData) {
             InternetOperator localOperator = convert(inputData);
-            InternetOperator innerOper = dataBase.getByName(localOperator.NameOperator);
+            InternetOperator innerOper = _dataBase.getByName(localOperator.NameOperator);
             innerOper.PriceOfMonth = localOperator.PriceOfMonth;
             innerOper.CntUsers = localOperator.CntUsers;
         }
