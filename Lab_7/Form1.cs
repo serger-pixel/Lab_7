@@ -8,9 +8,16 @@ namespace Lab_7
         private int MAX_CNT = 100;
         private int MIN_CNT = 1;
 
-        public Form1()
+        private Controller controller;
+
+        public Form1(Controller controller)
         {
             InitializeComponent();
+            this.controller = controller;
+            System.Threading.Timer timer = new System.Threading.Timer(
+                    (Object state) => updateData(),
+                    null, 0, 1000
+                    );
         }
         
         //Функция, обрабатывающая нажатие кнопки "Создать"
@@ -18,12 +25,15 @@ namespace Lab_7
         {
             try
             {
+                lock(controller.getDataBase())
+                {
                 String inputData = nameBox.Text + " " + price.Value.ToString() + " " +
                     cntUsers.Value.ToString();
 
-                Controller.add(inputData);
+                controller.add(inputData);
                 nameSelector.Items.Add(nameBox.Text);
-                clearAllFields(nameBox, price, cntUsers);
+                    clearAllFields(nameBox, price, cntUsers);
+                }
             }
             catch (Exception ex)
             {
@@ -36,9 +46,12 @@ namespace Lab_7
         {
             try
             {
-                String inputData = nameSelector.Text + " " + newPrice.Value.ToString() + " " +
+                
+                {
+                    String inputData = nameSelector.Text + " " + newPrice.Value.ToString() + " " +
                     newCntUsers.Value.ToString();
-                Controller.update(inputData);
+                    controller.update(inputData);
+                }
             }
             catch (Exception ex)
             {
@@ -51,10 +64,13 @@ namespace Lab_7
         {
             try
             {
-                String name = nameSelector.Text;
-                Controller.remove(name);
+                
+                {
+                    String name = nameSelector.Text;
+                controller.remove(name);
                 nameSelector.Items.RemoveAt(0);
-                clearAllFields(nameSelector, newPrice, newCntUsers);
+                    clearAllFields(nameSelector, newPrice, newCntUsers);
+                }
             }
             catch (Exception ex)
             {
@@ -86,9 +102,23 @@ namespace Lab_7
         //Функция для обработки выбора из списка интернет операторов
         private void nameSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            InternetOperator localOperator = Controller.get(nameSelector.Text);
-            newPrice.Value = localOperator.PriceOfMonth;
-            newCntUsers.Value = localOperator.CntUsers;
+             
+            {
+                InternetOperator localOperator = controller.get(nameSelector.Text);
+                newPrice.Value = localOperator.PriceOfMonth;
+                newCntUsers.Value = localOperator.CntUsers;
+            }
+        }
+
+        private void updateData()
+        {
+                InternerOperatorList dataBase = controller.getDataBase();
+            clearAllFields(nameSelector, newPrice, newCntUsers);
+            nameSelector.Items.Clear();
+                foreach (var element in dataBase)
+                {
+                    nameSelector.Items.Add(element.NameOperator);
+                }
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Lab_7
         Regex _regexUsers = new Regex(Regs._cntUsersReg);
 
         //Список интернет операторов
-        public InternerOperatorList _dataBase = new InternerOperatorList();
+        public volatile InternerOperatorList _dataBase = new InternerOperatorList();
 
         public void checkName(String name) 
         {
