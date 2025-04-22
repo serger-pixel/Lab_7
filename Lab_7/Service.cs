@@ -9,10 +9,12 @@ namespace Lab_7
 {
     public class Service
     {
+        //Регулярные выражения для проверки полей интернет операторов
         Regex _regexName = new Regex(Regs._nameReg);
         Regex _regexPrice = new Regex(Regs._priceReg);
         Regex _regexUsers = new Regex(Regs._cntUsersReg);
-        //Список объектов
+
+        //Список интернет операторов
         public InternerOperatorList _dataBase = new InternerOperatorList();
 
         public void checkName(String name) 
@@ -22,7 +24,17 @@ namespace Lab_7
                 throw new NameException();
             }
         }
+        
+        //Проверка выбора интернет операторов
+        public void checkSelection(String name)
+        {
+            if (name.Length == 0)
+            {
+                throw new ObjectNotChosenException();
+            }
+        }
 
+        //Проверка существования интернет оператора
         public void checkExistance(String name) 
         {
             if (_dataBase.find(name))
@@ -31,6 +43,7 @@ namespace Lab_7
             }
         }
 
+        //Проверка цены
         public void checkPrice(String price) 
         {
             if (!_regexPrice.Match(price).Success)
@@ -39,6 +52,7 @@ namespace Lab_7
             }
         }
 
+        //Проверка кол-ва пользователей
         public void checkUsers(String cntUsers) 
         {
             if (!_regexUsers.Match(cntUsers).Success)
@@ -47,6 +61,7 @@ namespace Lab_7
             }
         }
 
+        //Проверка входящей информации
         public void checkData(String inputData) 
         {
             String[] splitData = inputData.Split(new char[] { ' ' });
@@ -64,7 +79,7 @@ namespace Lab_7
             return new InternetOperator(splitData[0], decimal.Parse(splitData[1]), int.Parse(splitData[2]));
         }
 
-        //Добавление пользователя
+        //Добавление интернет оператора
         public void add(String inputData) {
             _dataBase.Add(convert(inputData));
         }
