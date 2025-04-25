@@ -47,6 +47,7 @@ namespace Lab_7
             clearPriceAndCnt(price, cntUsers);
         }
 
+        // Переключение между формами
         private void switchBtn_Click(object sender, EventArgs e)
         {
             Program.SwitchForms();

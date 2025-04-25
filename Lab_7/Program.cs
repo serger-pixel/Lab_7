@@ -9,10 +9,13 @@ namespace Lab_7
         static Controller controller = new Controller();
         static Form form = new Form1(controller);
 
+        // Точка входа
         static void Main()
         {
             RunForm();
         }
+
+        // Запуск формы
         private static void RunForm()
         {
             if (currentForm == 0) 
@@ -26,6 +29,7 @@ namespace Lab_7
             form.ShowDialog();
         }
 
+        // Переключение между формами
         public static void SwitchForms()
         {
             form.Dispose();

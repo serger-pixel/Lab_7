@@ -76,6 +76,7 @@
             newCntUsers.Value = localOperator.CntUsers;
         }
 
+        // Обновление данных
         private void updateData()
         {
             InternerOperatorList dataBase = controller.getDataBase();
@@ -87,6 +88,7 @@
             }
         }
 
+        // Переключение между формами
         private void switchBtn_Click(object sender, EventArgs e)
         {
             Program.SwitchForms();
