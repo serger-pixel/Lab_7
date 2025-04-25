@@ -1,6 +1,6 @@
-namespace Lab_7
+п»їnamespace Lab_7
 {
-    public partial class Form1 : Form
+    public partial class Form2 : Form
     {
         private int MIN_PRICE = 100;
         private int MAX_PRICE = 10000;
@@ -10,7 +10,7 @@ namespace Lab_7
 
         private Controller controller;
 
-        public Form1(Controller controller)
+        public Form2(Controller controller)
         {
             InitializeComponent();
             this.controller = controller;
@@ -20,7 +20,7 @@ namespace Lab_7
                     );
         }
 
-        //Функция, обрабатывающая нажатие кнопки "Создать"
+        //Р¤СѓРЅРєС†РёСЏ, РѕР±СЂР°Р±Р°С‚С‹РІР°СЋС‰Р°СЏ РЅР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЎРѕР·РґР°С‚СЊ"
         private void createButton_Click(object sender, EventArgs e)
         {
             try
@@ -41,7 +41,7 @@ namespace Lab_7
             }
         }
 
-        //Функция, обрабатывающая нажатие кнопки "Редактировать"
+        //Р¤СѓРЅРєС†РёСЏ, РѕР±СЂР°Р±Р°С‚С‹РІР°СЋС‰Р°СЏ РЅР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"
         private void editButton_Click(object sender, EventArgs e)
         {
             try
@@ -59,7 +59,7 @@ namespace Lab_7
             }
         }
 
-        //Функция, обрабатывающая нажатие кнопки "Удалить"
+        //Р¤СѓРЅРєС†РёСЏ, РѕР±СЂР°Р±Р°С‚С‹РІР°СЋС‰Р°СЏ РЅР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЈРґР°Р»РёС‚СЊ"
         private void deleteButton_Click(object sender, EventArgs e)
         {
             try
@@ -78,14 +78,14 @@ namespace Lab_7
             }
         }
 
-        //Функция для очистки полей цены и кол-ва пользователей
+        //Р¤СѓРЅРєС†РёСЏ РґР»СЏ РѕС‡РёСЃС‚РєРё РїРѕР»РµР№ С†РµРЅС‹ Рё РєРѕР»-РІР° РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
         public void clearPriceAndCnt(NumericUpDown price, NumericUpDown cntUsers)
         {
             price.Value = MIN_PRICE;
             cntUsers.Value = MIN_CNT;
         }
 
-        //Функция для очистки всех полей
+        //Р¤СѓРЅРєС†РёСЏ РґР»СЏ РѕС‡РёСЃС‚РєРё РІСЃРµС… РїРѕР»РµР№
         public void clearAllFields(TextBox name, NumericUpDown price, NumericUpDown cntUsers)
         {
             name.Text = "";
@@ -99,7 +99,7 @@ namespace Lab_7
             clearPriceAndCnt(price, cntUsers);
         }
 
-        //Функция для обработки выбора из списка интернет операторов
+        //Р¤СѓРЅРєС†РёСЏ РґР»СЏ РѕР±СЂР°Р±РѕС‚РєРё РІС‹Р±РѕСЂР° РёР· СЃРїРёСЃРєР° РёРЅС‚РµСЂРЅРµС‚ РѕРїРµСЂР°С‚РѕСЂРѕРІ
         private void nameSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
 

@@ -27,6 +27,7 @@ namespace Lab_7
 
         public static void SwitchForms()
         {
+            forms[currentForm].Close();
             currentForm = (currentForm + 1) % forms.Count;
             RunForm();
         }

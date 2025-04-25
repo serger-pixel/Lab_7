@@ -36,21 +36,9 @@
             cntUsers = new NumericUpDown();
             price = new NumericUpDown();
             nameBox = new TextBox();
-            editingPanel = new Panel();
-            deleteButton = new Button();
-            editButton = new Button();
-            nameSelector = new ComboBox();
-            label4 = new Label();
-            label5 = new Label();
-            newPrice = new NumericUpDown();
-            label6 = new Label();
-            newCntUsers = new NumericUpDown();
             addingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)cntUsers).BeginInit();
             ((System.ComponentModel.ISupportInitialize)price).BeginInit();
-            editingPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)newPrice).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)newCntUsers).BeginInit();
             SuspendLayout();
             // 
             // addingPanel
@@ -62,7 +50,7 @@
             addingPanel.Controls.Add(cntUsers);
             addingPanel.Controls.Add(price);
             addingPanel.Controls.Add(nameBox);
-            addingPanel.Location = new Point(111, 92);
+            addingPanel.Location = new Point(406, 99);
             addingPanel.Margin = new Padding(4, 5, 4, 5);
             addingPanel.Name = "addingPanel";
             addingPanel.Size = new Size(366, 342);
@@ -138,112 +126,20 @@
             nameBox.Size = new Size(141, 31);
             nameBox.TabIndex = 0;
             // 
-            // editingPanel
+            // formTitle
             // 
-            editingPanel.Controls.Add(deleteButton);
-            editingPanel.Controls.Add(editButton);
-            editingPanel.Controls.Add(nameSelector);
-            editingPanel.Controls.Add(label4);
-            editingPanel.Controls.Add(label5);
-            editingPanel.Controls.Add(newPrice);
-            editingPanel.Controls.Add(label6);
-            editingPanel.Controls.Add(newCntUsers);
-            editingPanel.Location = new Point(586, 92);
-            editingPanel.Margin = new Padding(4, 5, 4, 5);
-            editingPanel.Name = "editingPanel";
-            editingPanel.Size = new Size(388, 342);
-            editingPanel.TabIndex = 1;
-            // 
-            // deleteButton
-            // 
-            deleteButton.Location = new Point(227, 278);
-            deleteButton.Margin = new Padding(4, 5, 4, 5);
-            deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(107, 38);
-            deleteButton.TabIndex = 14;
-            deleteButton.Text = "Удалить";
-            deleteButton.UseVisualStyleBackColor = true;
-            deleteButton.Click += deleteButton_Click;
-            // 
-            // editButton
-            // 
-            editButton.Location = new Point(21, 278);
-            editButton.Margin = new Padding(4, 5, 4, 5);
-            editButton.Name = "editButton";
-            editButton.Size = new Size(143, 38);
-            editButton.TabIndex = 7;
-            editButton.Text = "Редактировать";
-            editButton.UseVisualStyleBackColor = true;
-            editButton.Click += editButton_Click;
-            // 
-            // nameSelector
-            // 
-            nameSelector.DropDownStyle = ComboBoxStyle.DropDownList;
-            nameSelector.FormattingEnabled = true;
-            nameSelector.Location = new Point(21, 30);
-            nameSelector.Margin = new Padding(4, 5, 4, 5);
-            nameSelector.Name = "nameSelector";
-            nameSelector.Size = new Size(171, 33);
-            nameSelector.TabIndex = 13;
-            nameSelector.SelectedIndexChanged += nameSelector_SelectedIndexChanged;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(173, 178);
-            label4.Margin = new Padding(4, 0, 4, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(196, 25);
-            label4.TabIndex = 12;
-            label4.Text = "Кол-во пользователей";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(203, 97);
-            label5.Margin = new Padding(4, 0, 4, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(53, 25);
-            label5.TabIndex = 11;
-            label5.Text = "Цена";
-            // 
-            // newPrice
-            // 
-            newPrice.Location = new Point(21, 93);
-            newPrice.Margin = new Padding(4, 5, 4, 5);
-            newPrice.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
-            newPrice.Minimum = new decimal(new int[] { 100, 0, 0, 0 });
-            newPrice.Name = "newPrice";
-            newPrice.Size = new Size(143, 31);
-            newPrice.TabIndex = 8;
-            newPrice.Value = new decimal(new int[] { 100, 0, 0, 0 });
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(203, 35);
-            label6.Margin = new Padding(4, 0, 4, 0);
-            label6.Name = "label6";
-            label6.Size = new Size(140, 25);
-            label6.TabIndex = 10;
-            label6.Text = "Имя оператора";
-            // 
-            // newCntUsers
-            // 
-            newCntUsers.Location = new Point(23, 165);
-            newCntUsers.Margin = new Padding(4, 5, 4, 5);
-            newCntUsers.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            newCntUsers.Name = "newCntUsers";
-            newCntUsers.Size = new Size(141, 31);
-            newCntUsers.TabIndex = 9;
-            newCntUsers.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            formTitle.AutoSize = true;
+            formTitle.Location = new Point(525, 41);
+            formTitle.Name = "formTitle";
+            formTitle.Size = new Size(146, 25);
+            formTitle.TabIndex = 2;
+            formTitle.Text = "Создание";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1143, 587);
-            Controls.Add(editingPanel);
             Controls.Add(addingPanel);
             Margin = new Padding(4, 5, 4, 5);
             Name = "Form1";
@@ -252,10 +148,6 @@
             addingPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)cntUsers).EndInit();
             ((System.ComponentModel.ISupportInitialize)price).EndInit();
-            editingPanel.ResumeLayout(false);
-            editingPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)newPrice).EndInit();
-            ((System.ComponentModel.ISupportInitialize)newCntUsers).EndInit();
             ResumeLayout(false);
         }
 
@@ -264,19 +156,11 @@
         private Panel addingPanel;
         private NumericUpDown price;
         private TextBox nameBox;
-        private Panel editingPanel;
         private Button createButton;
         private Label label3;
         private Label label2;
         private Label label1;
         private NumericUpDown cntUsers;
-        private Button deleteButton;
-        private Button editButton;
-        private ComboBox nameSelector;
-        private Label label4;
-        private Label label5;
-        private NumericUpDown newPrice;
-        private Label label6;
-        private NumericUpDown newCntUsers;
+        private Label formTitle;
     }
 }
