@@ -1,33 +1,34 @@
+using System.Security.Cryptography;
+
 namespace Lab_7
 {
-    internal static class Program
+    public static class Program
     {
-        static List<Form> forms = new();
+        static List<int> forms = new() { 0, 1};
         static int currentForm = 0;
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
-        [STAThread]
+        static Controller controller = new Controller();
+        static Form form = new Form1(controller);
+
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Controller controller = new Controller();
-            forms.Add(new Form1(controller));
-            forms.Add(new Form1(controller));
-
             RunForm();
         }
         private static void RunForm()
         {
-            forms[currentForm].Show();
-            Application.Run(forms[currentForm]);
+            if (currentForm == 0) 
+            {
+                form = new Form1(controller);
+            }
+            else
+            {
+                form = new Form2(controller);
+            }
+            form.ShowDialog();
         }
 
         public static void SwitchForms()
         {
-            forms[currentForm].Close();
+            form.Dispose();
             currentForm = (currentForm + 1) % forms.Count;
             RunForm();
         }

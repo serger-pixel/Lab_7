@@ -36,6 +36,8 @@
             cntUsers = new NumericUpDown();
             price = new NumericUpDown();
             nameBox = new TextBox();
+            formTitle = new Label();
+            switchBtn = new Button();
             addingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)cntUsers).BeginInit();
             ((System.ComponentModel.ISupportInitialize)price).BeginInit();
@@ -129,17 +131,29 @@
             // formTitle
             // 
             formTitle.AutoSize = true;
-            formTitle.Location = new Point(525, 41);
+            formTitle.Location = new Point(549, 45);
             formTitle.Name = "formTitle";
-            formTitle.Size = new Size(146, 25);
-            formTitle.TabIndex = 2;
+            formTitle.Size = new Size(90, 25);
+            formTitle.TabIndex = 1;
             formTitle.Text = "Создание";
+            // 
+            // switchBtn
+            // 
+            switchBtn.Location = new Point(967, 45);
+            switchBtn.Name = "switchBtn";
+            switchBtn.Size = new Size(164, 34);
+            switchBtn.TabIndex = 2;
+            switchBtn.Text = "Редактирование";
+            switchBtn.UseVisualStyleBackColor = true;
+            switchBtn.Click += switchBtn_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1143, 587);
+            Controls.Add(switchBtn);
+            Controls.Add(formTitle);
             Controls.Add(addingPanel);
             Margin = new Padding(4, 5, 4, 5);
             Name = "Form1";
@@ -149,6 +163,7 @@
             ((System.ComponentModel.ISupportInitialize)cntUsers).EndInit();
             ((System.ComponentModel.ISupportInitialize)price).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -162,5 +177,6 @@
         private Label label1;
         private NumericUpDown cntUsers;
         private Label formTitle;
+        private Button switchBtn;
     }
 }

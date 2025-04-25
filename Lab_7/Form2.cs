@@ -14,44 +14,16 @@
         {
             InitializeComponent();
             this.controller = controller;
-            System.Threading.Timer timer = new System.Threading.Timer(
-                    (Object state) => updateData(),
-                    null, 0, 1000
-                    );
+            updateData();
         }
-
-        //Функция, обрабатывающая нажатие кнопки "Создать"
-        private void createButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                lock (controller.getDataBase())
-                {
-                    String inputData = nameBox.Text + " " + price.Value.ToString() + " " +
-                        cntUsers.Value.ToString();
-
-                    controller.add(inputData);
-                    nameSelector.Items.Add(nameBox.Text);
-                    clearAllFields(nameBox, price, cntUsers);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         //Функция, обрабатывающая нажатие кнопки "Редактировать"
         private void editButton_Click(object sender, EventArgs e)
         {
             try
             {
-
-                {
-                    String inputData = nameSelector.Text + " " + newPrice.Value.ToString() + " " +
-                    newCntUsers.Value.ToString();
-                    controller.update(inputData);
-                }
+                String inputData = nameSelector.Text + " " + newPrice.Value.ToString() + " " +
+                newCntUsers.Value.ToString();
+                controller.update(inputData);
             }
             catch (Exception ex)
             {
@@ -64,13 +36,10 @@
         {
             try
             {
-
-                {
-                    String name = nameSelector.Text;
-                    controller.remove(name);
-                    nameSelector.Items.RemoveAt(0);
-                    clearAllFields(nameSelector, newPrice, newCntUsers);
-                }
+                String name = nameSelector.Text;
+                controller.remove(name);
+                nameSelector.Items.RemoveAt(0);
+                clearAllFields(nameSelector, newPrice, newCntUsers);
             }
             catch (Exception ex)
             {
@@ -102,12 +71,9 @@
         //Функция для обработки выбора из списка интернет операторов
         private void nameSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            {
-                InternetOperator localOperator = controller.get(nameSelector.Text);
-                newPrice.Value = localOperator.PriceOfMonth;
-                newCntUsers.Value = localOperator.CntUsers;
-            }
+            InternetOperator localOperator = controller.get(nameSelector.Text);
+            newPrice.Value = localOperator.PriceOfMonth;
+            newCntUsers.Value = localOperator.CntUsers;
         }
 
         private void updateData()
@@ -119,6 +85,11 @@
             {
                 nameSelector.Items.Add(element.NameOperator);
             }
+        }
+
+        private void switchBtn_Click(object sender, EventArgs e)
+        {
+            Program.SwitchForms();
         }
     }
 }

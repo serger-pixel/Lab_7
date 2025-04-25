@@ -38,6 +38,7 @@
             deleteButton = new Button();
             editingPanel = new Panel();
             formTitle = new Label();
+            switchBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)newCntUsers).BeginInit();
             ((System.ComponentModel.ISupportInitialize)newPrice).BeginInit();
             editingPanel.SuspendLayout();
@@ -152,11 +153,22 @@
             formTitle.TabIndex = 2;
             formTitle.Text = "Редактирование";
             // 
+            // switchBtn
+            // 
+            switchBtn.Location = new Point(954, 38);
+            switchBtn.Name = "switchBtn";
+            switchBtn.Size = new Size(112, 34);
+            switchBtn.TabIndex = 3;
+            switchBtn.Text = "Создание";
+            switchBtn.UseVisualStyleBackColor = true;
+            switchBtn.Click += switchBtn_Click;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1143, 587);
+            Controls.Add(switchBtn);
             Controls.Add(formTitle);
             Controls.Add(editingPanel);
             Margin = new Padding(4, 5, 4, 5);
@@ -181,5 +193,6 @@
         private Button deleteButton;
         private Panel editingPanel;
         private Label formTitle;
+        private Button switchBtn;
     }
 }

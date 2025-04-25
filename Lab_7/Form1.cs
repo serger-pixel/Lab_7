@@ -14,63 +14,18 @@ namespace Lab_7
         {
             InitializeComponent();
             this.controller = controller;
-            System.Threading.Timer timer = new System.Threading.Timer(
-                    (Object state) => updateData(),
-                    null, 0, 1000
-                    );
         }
 
         //Функция, обрабатывающая нажатие кнопки "Создать"
         private void createButton_Click(object sender, EventArgs e)
         {
             try
-            {
-                lock (controller.getDataBase())
-                {
-                    String inputData = nameBox.Text + " " + price.Value.ToString() + " " +
-                        cntUsers.Value.ToString();
+            { 
+                String inputData = nameBox.Text + " " + price.Value.ToString() + " " +
+                    cntUsers.Value.ToString();
 
-                    controller.add(inputData);
-                    nameSelector.Items.Add(nameBox.Text);
-                    clearAllFields(nameBox, price, cntUsers);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        //Функция, обрабатывающая нажатие кнопки "Редактировать"
-        private void editButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                {
-                    String inputData = nameSelector.Text + " " + newPrice.Value.ToString() + " " +
-                    newCntUsers.Value.ToString();
-                    controller.update(inputData);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        //Функция, обрабатывающая нажатие кнопки "Удалить"
-        private void deleteButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                {
-                    String name = nameSelector.Text;
-                    controller.remove(name);
-                    nameSelector.Items.RemoveAt(0);
-                    clearAllFields(nameSelector, newPrice, newCntUsers);
-                }
+                controller.add(inputData);
+                clearAllFields(nameBox, price, cntUsers);
             }
             catch (Exception ex)
             {
@@ -92,33 +47,9 @@ namespace Lab_7
             clearPriceAndCnt(price, cntUsers);
         }
 
-        public void clearAllFields(ComboBox name, NumericUpDown price, NumericUpDown cntUsers)
+        private void switchBtn_Click(object sender, EventArgs e)
         {
-            name.SelectedIndex = -1;
-            name.Text = "";
-            clearPriceAndCnt(price, cntUsers);
-        }
-
-        //Функция для обработки выбора из списка интернет операторов
-        private void nameSelector_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            {
-                InternetOperator localOperator = controller.get(nameSelector.Text);
-                newPrice.Value = localOperator.PriceOfMonth;
-                newCntUsers.Value = localOperator.CntUsers;
-            }
-        }
-
-        private void updateData()
-        {
-            InternerOperatorList dataBase = controller.getDataBase();
-            clearAllFields(nameSelector, newPrice, newCntUsers);
-            nameSelector.Items.Clear();
-            foreach (var element in dataBase)
-            {
-                nameSelector.Items.Add(element.NameOperator);
-            }
+            Program.SwitchForms();
         }
     }
 }
